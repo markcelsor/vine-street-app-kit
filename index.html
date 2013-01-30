@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!-- html manifest="ale.manifest" -->
+  <head>
+    <title>App</title>
+    <link href="app.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="lib/zepto.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/iscroll-mod.js"></script>
+    <script src="app.js"></script>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=false, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+  </head>
+
+  <body>
+
+    <div id="app">
+    	<div id="modalWrapper">
+    		<div id="modal"></div>
+    		<a href="#closeModal" id="closeModal">Close</a>
+    	</div>
+    	<div id="header"></div>
+        <div id="contentWrapper">
+        	<div id="content"></div>
+        </div>
+        <div id="footer"></div>
+		
+    </div>
+
+
+    <!-- Templates -->
+	<script type="text/template" id="header-template">
+    		<div id="backButton"><a href="#historyBack">Back</a></div>
+    		<div id="pageTitle"><%= title %></div>	
+	</script>
+	
+	
+	<!-- FOOTER -->
+	
+	<!-- HOME -->
+    <script type="text/template" id="home-template">
+    	<div id="homeTemplate">
+			<%= content %>
+        </div>
+    </script>
+    
+    <!-- ITEMS -->
+    <script type="text/template" id="items-template">
+    	<h1>Items</h1>
+    	<div id="items-detail"></div>
+    	<div id="itemsList"></div>
+    </script>
+    <script type="text/template" id="itemsDetail-template">
+    	<div class="itemsDetail"  id="itemDetail-<%= id %>" dataId="<%= id %>">
+    		<h1 class="title"><%= title %></h1>
+    		<%= content %>
+    	</div>
+     </script>
+     <script type="text/template" id="itemsListItem-template">
+     	<div class="itemsListItemTemplate" id="itemsListItem-<%= id %>" dataId="<%= id %>">
+     		<a href="#items/detail/<%= id %>" class="title"><%= title %></a>
+     	</div>
+     </script>
+  
+	<!-- GLOBAL --> 
+	
+	<!-- Video -->
+	<script type="text/template" id="video-template">
+	    <div id="videoContainer">
+	    	<video src="<%= path %>" id="videoViewer" controls="controls" preload="auto" autoplay="autoplay" height="75%"></video>
+		</div>	
+	</script>
+    
+    <!-- Network Connection Error -->
+	<script type="text/template" id="networkConnectionError-template">
+	    <h1>Network Connection Error</h1>
+	    <p>Instructions for browsing to preloaded content.</p>
+	</script> 
+	
+	 <!-- Footer -->
+	<script type="text/template" id="footer-template">
+	    <ul>
+	    	<li class="home"><a href="#home">Home</a></li>
+	    	<li class="items"><a href="#items">Items</a></li>
+	    	<li class="video"><a href="#video/http:2f2fdownload.wavetlan.com2fSVV2fMedia2fHTTP2fH2642fOther_Media2fH264_test5_voice_mp4_480x360.mp4">Video</a></li>
+	    </ul>
+	    
+	</script>
+	
+	<!-- Empty -->
+	<script type="text/template" id="empty-template">
+
+	</script> 
+
+  </body>
+
+</html>
