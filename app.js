@@ -57,9 +57,6 @@ $(function(){
   });
    window.Footer = new FooterView;
   
-  console.log('no route');
-  
-  
   // Router
   // ---------------
   WorkspaceRouter = Backbone.Router.extend({
@@ -81,8 +78,7 @@ $(function(){
 	// ************
 		
 	  home: function() {
-	  	console.log('home');
-
+	  
 	  	// Check data
 	  	if(!window.workspace.dataPopulated) {
 	  		window.workspace.populateAppContent();

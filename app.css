@@ -37,10 +37,6 @@ div.td { display: table-cell; }
 	margin: 45px;
 }
 
-#modal a {
-
-}
-
 #closeModal {
 	position: absolute;
 	top: 30px;
@@ -74,7 +70,8 @@ div.td { display: table-cell; }
 }
 
 #videoViewer {
-	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 #header {
