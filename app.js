@@ -114,6 +114,7 @@ $(function(){
 		var i = 0;
 		window.itemsCollection.each(function(obj){
 			var template = _.template($('#itemsListItem-template').html())
+			obj.attributes.index = i;
 			$('#itemsList').append(template(obj.attributes));
 			i++;
 		});
