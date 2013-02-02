@@ -208,3 +208,10 @@ div.td { display: table-cell; }
 	float: left;
 	margin-left: 25%;
 }
+
+/* screen size handling */
+@media screen and (max-width:960px) {
+	body {
+		
+	}
+}
