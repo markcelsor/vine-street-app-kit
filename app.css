@@ -86,7 +86,10 @@ div.td { display: table-cell; }
 }
 
 #header #backButton a {
-	float: left;
+	position: absolute;
+	top: 0;
+	left:0;
+	z-index: 1;
 	background-image: url('images/header-backButton-bg.png');
 	background-repeat: no-repeat;
 	width: 13px;
@@ -103,6 +106,7 @@ div.td { display: table-cell; }
 	position: absolute;
 	top: 0;
 	left:0;
+	z-index: 0;
 	width: 100%;
 }
 
@@ -170,7 +174,37 @@ div.td { display: table-cell; }
 	padding: 1em;
 	text-decoration: none;
 	color: #000;
+	background-image: url('images/listViewItem-a-bg.png');
+	background-position: top right;
+	background-repeat: no-repeat;
 }
 .listViewItem0 a {
 	border-top-width: 0;
+}
+
+
+
+#itemFieldsList {
+	border-bottom: 1px solid black;
+	background: #fff;
+	border-radius: .5em;
+	border: 1px solid black;
+}
+.itemFieldsListItemTemplate {
+	clear: both;
+	border-top: 1px solid black;
+	padding: 1em;
+}
+.itemFieldsListItem0 {
+	border-top-width: 0;
+}
+
+.itemFieldsListItemTemplate .key {
+	float: left;
+	width: 24%;
+	font-weight: bold;
+}
+.itemFieldsListItemTemplate .value {
+	float: left;
+	margin-left: 25%;
 }

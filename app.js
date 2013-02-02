@@ -140,6 +140,33 @@ $(function(){
 	    window.Content.template = _.template($('#itemsDetail-template').html())
 		window.Content.render();
 		
+		//Dynamic fields
+		
+		//var tempArray = new Array();
+		//tempArray.push({ name:"a",value:"a-value"});
+		
+		var i = 0;
+		$.each( window.Content.data, function( key, value ) {
+		  var template = _.template($('#itemFieldsListItem-template').html())	
+		  var attributes = { index:i, key:key, value:value }
+		  $('#itemFieldsList').append(template(attributes));
+		  i++;
+		});
+		
+		/*
+		$('#itemFieldsList').html("");
+		
+		window.itemFieldsCollection.attributes.each(function(obj){
+			console.log(obj);
+			*
+			var template = _.template($('#itemFieldsListItem-template').html())
+			obj.attributes.index = i;
+			$('#itemFieldsList').append(template(obj.attributes));
+			*
+			i++;
+		});
+		*/
+		
 		// iOS Specific
 		var scroller1 = new iScroll('content');
 		//var scroller2 = new iScroll('itemDescription');
@@ -207,11 +234,13 @@ $(function(){
 		$.getJSON("./items.json", function(json) {
 		   	currentArray = [];
 		   	$.each(json, function(i,item){
-		   		currentArray.push({
-			   		id:i, 
-			   		title:item.title,
-			   		content:item.content
-		   		});
+		   		/*
+		   		var obj;
+		   		$.each(item, function( key, value ) {
+		   			obj[key]=value;
+		   		}
+		   		*/
+		   		currentArray.push(item);
 		   	});
 			window.itemsCollection = new Backbone.Collection(currentArray);
 			

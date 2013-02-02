@@ -54,7 +54,7 @@
     <script type="text/template" id="itemsDetail-template">
     	<div class="itemsDetail"  id="itemDetail-<%= id %>" dataId="<%= id %>">
     		<h1 class="title"><%= title %></h1>
-    		<%= content %>
+    		<div id="itemFieldsList"></div>
     	</div>
      </script>
      <script type="text/template" id="itemsListItem-template">
@@ -62,6 +62,13 @@
      		<a href="#items/detail/<%= id %>" class="title"><%= title %></a>
      	</div>
      </script>
+     <script type="text/template" id="itemFieldsListItem-template">
+     	<div class="itemFieldsListItemTemplate itemFieldsListItem<%= index %>" id="itemFieldsListItem-<%= index %>">
+     		<div class="key"><%= key %></div>
+     		<div value="value"><%= value %></div>
+     	</div>
+     </script>
+     
   
 	<!-- GLOBAL --> 
 	
