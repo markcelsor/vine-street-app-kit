@@ -178,7 +178,7 @@ div.td { display: table-cell; }
 	background-position: top right;
 	background-repeat: no-repeat;
 }
-.listViewItem0 a {
+.listViewItem:first-child a {
 	border-top-width: 0;
 }
 
@@ -209,9 +209,3 @@ div.td { display: table-cell; }
 	margin-left: 25%;
 }
 
-/* screen size handling */
-@media screen and (max-width:960px) {
-	body {
-		
-	}
-}

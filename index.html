@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
-<!-- html manifest="ale.manifest" -->
+<!-- html manifest="app.manifest" -->
   <head>
     <title>App</title>
-    <link href="app.css" media="all" rel="stylesheet" type="text/css"/>
+    
+    <!-- App Kit Core CSS -->
+    <link href="appkit/core.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="appkit/phone.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="appkit/tablet.css" media="all" rel="stylesheet" type="text/css"/>
+    
+    <!-- App Kit Library Javascript -->
     <script src="lib/zepto.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/backbone.js"></script>
     <script src="lib/iscroll-mod.js"></script>
-    <script src="app.js"></script>
+    
+    <!-- App Kit Core Javascript -->
+    <script src="appkit/core.js"></script>
+	
+	<!-- iOS Browser behavior meta tags -->
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=false, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes">
   </head>
 
   <body>
-
     <div id="app">
     	<div id="modalWrapper">
     		<div id="modal"></div>

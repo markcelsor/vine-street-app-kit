@@ -1,0 +1,38 @@
+@media (min-width:768px) {
+	
+	#content { 
+		padding-right: 0;
+	}
+	
+	.listView {
+		background: transparent;
+		border-radius: none;
+		border: 0px solid black;
+	}
+	.listView:after
+	{
+		content:".";
+		display:block;
+		clear:both;
+		visibility:hidden;
+	}
+	
+	.itemsListItemTemplate a {
+		width: 200px;
+		height: 125px;
+		float:left;
+		border: 1px solid black;
+		border-radius: .5em;
+		vertical-align: bottom;
+		background: #fff;
+		background-image: none;
+		margin: 0 1em 1em 0;
+	}
+	.listViewItem:first-child a {
+		border-top-width: 1px;
+	}
+	
+	#itemFieldsList {
+		margin-right: 1em;
+	}
+}
