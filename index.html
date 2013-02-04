@@ -9,6 +9,9 @@
     <link href="appkit/phone.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="appkit/tablet.css" media="all" rel="stylesheet" type="text/css"/>
     
+    <!-- App Specific Javascript -->
+    <link href="app.css" media="all" rel="stylesheet" type="text/css"/>
+    
     <!-- App Kit Library Javascript -->
     <script src="lib/zepto.js"></script>
     <script src="lib/underscore.js"></script>
@@ -17,6 +20,9 @@
     
     <!-- App Kit Core Javascript -->
     <script src="appkit/core.js"></script>
+    
+    <!-- App Specific Javascript -->
+    <script src="app.js"></script>
 	
 	<!-- iOS Browser behavior meta tags -->
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=false, initial-scale=1.0" />
@@ -57,22 +63,21 @@
     <!-- ITEMS -->
     <script type="text/template" id="items-template">
     	<h1>Items</h1>
-    	<div id="items-detail"></div>
-    	<ul id="itemsList" class="listView"></ul>
+    	<ul id="itemsList" class="itemsList"></ul>
     </script>
     <script type="text/template" id="itemsDetail-template">
     	<div class="itemsDetail"  id="itemDetail-<%= id %>" dataId="<%= id %>">
     		<h1 class="title"><%= title %></h1>
-    		<ul id="itemFieldsList"></ul>
+    		<ul id="itemFieldsList" class="itemFieldsList"></ul>
     	</div>
      </script>
      <script type="text/template" id="itemsListItem-template">
-     	<li class="itemsListItemTemplate listViewItem listViewItem<%= index %>" id="itemsListItem-<%= id %>" dataId="<%= id %>">
+     	<li class="itemsListItem" id="itemsListItem-<%= id %>">
      		<a href="#items/detail/<%= id %>" class="title"><%= title %></a>
      	</li>
      </script>
      <script type="text/template" id="itemFieldsListItem-template">
-     	<li class="itemFieldsListItemTemplate itemFieldsListItem<%= index %>" id="itemFieldsListItem-<%= index %>">
+     	<li class="itemFieldsListItem" id="itemFieldsListItem-<%= index %>">
      		<div class="key"><%= key %></div>
      		<div value="value"><%= value %></div>
      	</li>

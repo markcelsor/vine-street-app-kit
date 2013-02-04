@@ -161,15 +161,15 @@ div.td { display: table-cell; }
 
 
 /* CONTENT */
-	.listView {
+	.itemsList {
 		padding: 0;
 		margin: 0;
 	}
 	
-	.listViewItem {
+	.itemsListItem {
 		list-style-type: none;
 	}
-	.listViewItem a {
+	.itemsListItem a {
 		display: block;
 		border-top: 1px solid black;
 		padding: 1em;
@@ -186,22 +186,22 @@ div.td { display: table-cell; }
 		padding: 0;
 		margin: 0;
 	}
-	.itemFieldsListItemTemplate {
+	.itemFieldsListItem {
 		clear: both;
 		border-top: 1px solid black;
 		padding: 1em;
 		list-style-type: none;
 	}
-	.itemFieldsListItemTemplate:first-child {
+	.itemFieldsListItem:first-child {
 		border-top-width: 0;
 	}
 	
-	.itemFieldsListItemTemplate .key {
+	.itemFieldsListItem .key {
 		float: left;
 		width: 24%;
 		font-weight: bold;
 	}
-	.itemFieldsListItemTemplate .value {
+	.itemFieldsListItem .value {
 		float: left;
 		margin-left: 25%;
 	}

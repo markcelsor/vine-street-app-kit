@@ -4,12 +4,12 @@
 		padding-right: 0;
 	}
 	
-	.listView {
+	.itemsList {
 		background: transparent;
 		border-radius: none;
 		border: 0px solid black;
 	}
-	.listView:after
+	.itemsList:after
 	{
 		content:".";
 		display:block;
@@ -17,7 +17,7 @@
 		visibility:hidden;
 	}
 	
-	.itemsListItemTemplate a {
+	.itemsListItem a {
 		width: 200px;
 		height: 125px;
 		float:left;
@@ -28,7 +28,7 @@
 		background-image: none;
 		margin: 0 1em 1em 0;
 	}
-	.listViewItem:first-child a {
+	.itemsListItem:first-child a {
 		border-top-width: 1px;
 	}
 	

@@ -1,10 +1,13 @@
 // Load the application once the DOM is ready, using `jQuery.ready`:
+var AppKit;
+AppKit = {};
+
 $(function(){
 
   document.addEventListener('touchmove', function(e){ e.preventDefault(); });
-  
+    
   // Header View
-  HeaderView = Backbone.View.extend({
+  AppKit.headerView = Backbone.View.extend({
   	el: $("#header"),
   	template: _.template($('#header-template').html()),
   	title: "Nil",
@@ -17,10 +20,10 @@ $(function(){
       }
     }
   });
-  window.Header = new HeaderView;
+  
   
   // Content View
-  ContentView = Backbone.View.extend({
+  AppKit.contentView = Backbone.View.extend({
   	el: $("#content"),
   	title: "Home",
   	template: _.template($('#home-template').html()),
@@ -31,12 +34,9 @@ $(function(){
       
     }
   });
-  window.Content = new ContentView;
-  
-  
+
   // Modal View
-  
-  ModalView = Backbone.View.extend({
+  AppKit.modalView = Backbone.View.extend({
   	el: $("#modal"),
   	template: _.template($('#empty-template').html()),
   	data:{},
@@ -45,233 +45,19 @@ $(function(){
       $("#modalWrapper").show();
     }
   });
-  window.Modal = new ModalView;
+  
   
   // Footer View
-  FooterView = Backbone.View.extend({
+  AppKit.footerView = Backbone.View.extend({
   	el: $("#footer"),
   	template: _.template($('#footer-template').html()),
   	render: function() {
       this.el.html(this.template({}));
     }
   });
-   window.Footer = new FooterView;
   
-  // Router
-  // ---------------
-  WorkspaceRouter = Backbone.Router.extend({
-	
-	  routes: {
-	    
-		"home": "home",
-	    "items": "items",
-	    "items/detail/:itemId": "itemsDetail",
-	    
-	    //global
-	    "video/:path": "video",
-	    "closeModal": "closeModal",
-	    "historyBack": "historyBack"
-	    
-	  },
-
-	// footer
-	// ************
-		
-	  home: function() {
-	  
-	  	// Check data
-	  	if(!window.workspace.dataPopulated) {
-	  		window.workspace.populateAppContent();
-	  	}
-	  	
-	  	window.Content.data.content = "Home Content";
-	
-	    $('body').removeClass().addClass('home');
-	    window.Header.title = "Home";
-	    window.Header.render();
-	    window.Content.template = _.template($('#home-template').html())
-		window.Content.render();
-	  },
-	  
-	  // ITEMS
-	  items: function() {
-	  	
-	  	// Check data
-	  	if(!window.workspace.dataPopulated) {
-	  		window.workspace.populateAppContent();
-	  		return;
-	  	}
-	  	
-	  
-	  	$('body').removeClass().addClass('items');
-	  	window.Header.title = "Items";
-	    window.Header.render();
-	    window.Content.template = _.template($('#items-template').html())
-		window.Content.render();
-		
-		// Populate item list
-		$('#itemsList').html("");
-		var i = 0;
-		window.itemsCollection.each(function(obj){
-			var template = _.template($('#itemsListItem-template').html())
-			obj.attributes.index = i;
-			$('#itemsList').append(template(obj.attributes));
-			i++;
-		});
-		
-		// iOS Specific
-		var scroller1 = new iScroll('content');
-		//var scroller2 = new iScroll('itemList');
-	  },
-	  
-	  itemsDetail: function(itemId) {
-	  	
-	  	if(!window.workspace.dataPopulated) {
-	  		window.workspace.populateAppContent();
-	  		return;
-	  	}
-	  	
-	  	$('body').removeClass().addClass('itemsDetail itemsDetail-'+itemId);
-	  	
-	  	window.Header.title = "Items Detail";
-	    window.Header.render();
-	    	    
-	    window.Content.data = window.itemsCollection.models[itemId].attributes;
-	    window.Content.template = _.template($('#itemsDetail-template').html())
-		window.Content.render();
-		
-		//Dynamic fields
-		
-		//var tempArray = new Array();
-		//tempArray.push({ name:"a",value:"a-value"});
-		
-		var i = 0;
-		$.each( window.Content.data, function( key, value ) {
-		  var template = _.template($('#itemFieldsListItem-template').html())	
-		  var attributes = { index:i, key:key, value:value }
-		  $('#itemFieldsList').append(template(attributes));
-		  i++;
-		});
-		
-		/*
-		$('#itemFieldsList').html("");
-		
-		window.itemFieldsCollection.attributes.each(function(obj){
-			console.log(obj);
-			*
-			var template = _.template($('#itemFieldsListItem-template').html())
-			obj.attributes.index = i;
-			$('#itemFieldsList').append(template(obj.attributes));
-			*
-			i++;
-		});
-		*/
-		
-		// iOS Specific
-		var scroller1 = new iScroll('content');
-		//var scroller2 = new iScroll('itemDescription');
-		
-		
-	  },
-	  	  
-	  
-	  // global
-	  // ************
-	  
-	  video: function(path) {
-	    this.testNetworkConnection(path, this.videoLoad);
-	  },
-	  videoLoad: function(path) {
-	  	
-	  	$('#modal').addClass('videoModal');
-	  	window.Modal.data = {'path':path};
-	    window.Modal.template = _.template($('#video-template').html())
-		window.Modal.render();
-	  },
-	  
-	  historyBack: function() {
-	  	history.go(-2);
-	  	var scroller = new iScroll('content');
-	  },
-	  
-	  closeModal: function(){
-	  	$('#modal').removeClass();
-	  	$('#modal').html('');
-	  	$('#modalWrapper').hide();
-	  	var scroller = new iScroll('content');
-	  	history.go(-2);
-	  },
-	  
-	  networkConnectionError: function() {
-	  	window.Modal.template = _.template($('#networkConnectionError-template').html())
-		window.Modal.render();
-	  },
-	  
-	  testNetworkConnection: function(path, callback) {
-	  	path = path.replace(/2f/g,"/");
-	  
-		$.ajax({
-			type: "get",
-			cache: false,
-			url: '/connection-test.txt',
-			dataType: "text",
-			error: function(){
-				window.workspace.networkConnectionError();
-            },
-            success: function(data){
-            	if(data==""){
-            		window.workspace.networkConnectionError();
-            	} else {
-            	
-            		callback(path)
-            	}
-            	
-            }
-        });	
-	},
-	
-    populateAppContent: function() {
-    	
-    	// ITEMS
-		$.getJSON("./items.json", function(json) {
-		   	currentArray = [];
-		   	$.each(json, function(i,item){
-		   		/*
-		   		var obj;
-		   		$.each(item, function( key, value ) {
-		   			obj[key]=value;
-		   		}
-		   		*/
-		   		currentArray.push(item);
-		   	});
-			window.itemsCollection = new Backbone.Collection(currentArray);
-			
-			/* NOTE: Additional getJSON calls are all nested to make them sequential
-			$.getJSON("http://test.com/feedB", function(json) { 
-				// MORE CODE
-			}); 
-			*/
-			
-			// This block should always be in the deepest nested getJSON 
-			window.pagesContentCollection = new Backbone.Collection(currentArray);
-			window.workspace.dataPopulated = true;
-			window.App.render();
-			
-		}); // ITEMS
-	}
-	
-	
-	});
-
-  window.workspace = new WorkspaceRouter();
-  window.workspace.dataPopulated = false;
   
-  Backbone.history.start({pushState: false});
-  
-  // The Application
-  // ---------------
-
-  AppView = Backbone.View.extend({
+  AppKit.appView = Backbone.View.extend({
 	
     el: $("#app"),
 
@@ -288,7 +74,61 @@ $(function(){
     }
     
   });
+  
+  
+  //Global
+	  AppKit.video = function(path) {
+	    this.testNetworkConnection(path, this.videoLoad);
+	  };
+	  AppKit.videoLoad = function(path) {
+	  	
+	  	$('#modal').addClass('videoModal');
+	  	window.Modal.data = {'path':path};
+	    window.Modal.template = _.template($('#video-template').html())
+		window.Modal.render();
+	  };
+	  
+	  AppKit.historyBack = function() {
+	  	history.go(-2);
+	  	var scroller = new iScroll('content');
+	  };
+	  
+	  AppKit.closeModal = function(){
+	  	$('#modal').removeClass();
+	  	$('#modal').html('');
+	  	$('#modalWrapper').hide();
+	  	var scroller = new iScroll('content');
+	  	history.go(-2);
+	  };
+	  
+	  AppKit.networkConnectionError = function() {
+	  	window.Modal.template = _.template($('#networkConnectionError-template').html())
+		window.Modal.render();
+	  };
+	  
+	  AppKit.testNetworkConnection = function(path, callback) {
+	  	path = path.replace(/2f/g,"/");
+	  
+		$.ajax({
+			type: "get",
+			cache: false,
+			url: 'appkit/connection-test.txt',
+			dataType: "text",
+			error: function(){
+				window.workspace.networkConnectionError();
+            },
+            success: function(data){
+            	if(data==""){
+            		window.workspace.networkConnectionError();
+            	} else {
+            	
+            		callback(path)
+            	}
+            	
+            }
+        });	
 
-  window.App = new AppView;
+  	};
+  
 
 });
