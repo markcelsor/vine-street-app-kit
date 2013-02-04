@@ -161,51 +161,47 @@ div.td { display: table-cell; }
 
 
 /* CONTENT */
-.listView {
-	border-bottom: 1px solid black;
-	background: #fff;
-	border-radius: .5em;
-	border: 1px solid black;
-}
-
-.listViewItem a {
-	display: block;
-	border-top: 1px solid black;
-	padding: 1em;
-	text-decoration: none;
-	color: #000;
-	background-image: url('images/listViewItem-a-bg.png');
-	background-position: top right;
-	background-repeat: no-repeat;
-}
-.listViewItem:first-child a {
-	border-top-width: 0;
-}
-
-
-
-#itemFieldsList {
-	border-bottom: 1px solid black;
-	background: #fff;
-	border-radius: .5em;
-	border: 1px solid black;
-}
-.itemFieldsListItemTemplate {
-	clear: both;
-	border-top: 1px solid black;
-	padding: 1em;
-}
-.itemFieldsListItem0 {
-	border-top-width: 0;
-}
-
-.itemFieldsListItemTemplate .key {
-	float: left;
-	width: 24%;
-	font-weight: bold;
-}
-.itemFieldsListItemTemplate .value {
-	float: left;
-	margin-left: 25%;
-}
-
+	.listView {
+		padding: 0;
+		margin: 0;
+	}
+	
+	.listViewItem {
+		list-style-type: none;
+	}
+	.listViewItem a {
+		display: block;
+		border-top: 1px solid black;
+		padding: 1em;
+		text-decoration: none;
+		color: #000;
+	}
+	
+	
+	#itemFieldsList {
+		border-bottom: 1px solid black;
+		background: #fff;
+		border-radius: .5em;
+		border: 1px solid black;
+		padding: 0;
+		margin: 0;
+	}
+	.itemFieldsListItemTemplate {
+		clear: both;
+		border-top: 1px solid black;
+		padding: 1em;
+		list-style-type: none;
+	}
+	.itemFieldsListItemTemplate:first-child {
+		border-top-width: 0;
+	}
+	
+	.itemFieldsListItemTemplate .key {
+		float: left;
+		width: 24%;
+		font-weight: bold;
+	}
+	.itemFieldsListItemTemplate .value {
+		float: left;
+		margin-left: 25%;
+	}

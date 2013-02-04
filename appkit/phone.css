@@ -1,0 +1,18 @@
+@media (max-width:767px) {
+	.listView {
+		border-bottom: 1px solid black;
+		background: #fff;
+		border-radius: .5em;
+		border: 1px solid black;
+	}
+	
+	.listViewItem a {
+		background-image: url('images/listViewItem-a-bg.png');
+		background-position: top right;
+		background-repeat: no-repeat;
+	}
+	.listViewItem:first-child a {
+		border-top-width: 0;
+	}
+	
+}

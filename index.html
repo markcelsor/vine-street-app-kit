@@ -58,24 +58,24 @@
     <script type="text/template" id="items-template">
     	<h1>Items</h1>
     	<div id="items-detail"></div>
-    	<div id="itemsList" class="listView"></div>
+    	<ul id="itemsList" class="listView"></ul>
     </script>
     <script type="text/template" id="itemsDetail-template">
     	<div class="itemsDetail"  id="itemDetail-<%= id %>" dataId="<%= id %>">
     		<h1 class="title"><%= title %></h1>
-    		<div id="itemFieldsList"></div>
+    		<ul id="itemFieldsList"></ul>
     	</div>
      </script>
      <script type="text/template" id="itemsListItem-template">
-     	<div class="itemsListItemTemplate listViewItem listViewItem<%= index %>" id="itemsListItem-<%= id %>" dataId="<%= id %>">
+     	<li class="itemsListItemTemplate listViewItem listViewItem<%= index %>" id="itemsListItem-<%= id %>" dataId="<%= id %>">
      		<a href="#items/detail/<%= id %>" class="title"><%= title %></a>
-     	</div>
+     	</li>
      </script>
      <script type="text/template" id="itemFieldsListItem-template">
-     	<div class="itemFieldsListItemTemplate itemFieldsListItem<%= index %>" id="itemFieldsListItem-<%= index %>">
+     	<li class="itemFieldsListItemTemplate itemFieldsListItem<%= index %>" id="itemFieldsListItem-<%= index %>">
      		<div class="key"><%= key %></div>
      		<div value="value"><%= value %></div>
-     	</div>
+     	</li>
      </script>
      
   

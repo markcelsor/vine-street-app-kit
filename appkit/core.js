@@ -182,6 +182,7 @@ $(function(){
 	    this.testNetworkConnection(path, this.videoLoad);
 	  },
 	  videoLoad: function(path) {
+	  	
 	  	$('#modal').addClass('videoModal');
 	  	window.Modal.data = {'path':path};
 	    window.Modal.template = _.template($('#video-template').html())
@@ -198,6 +199,7 @@ $(function(){
 	  	$('#modal').html('');
 	  	$('#modalWrapper').hide();
 	  	var scroller = new iScroll('content');
+	  	history.go(-2);
 	  },
 	  
 	  networkConnectionError: function() {
